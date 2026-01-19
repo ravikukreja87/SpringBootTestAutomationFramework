@@ -4,16 +4,16 @@
 
 ## 📋 Table of Contents
 1. [Framework Overview](#-framework-overview)
-2. [Recent Updates](#-recent-updates-v12)
-3. [Architecture & Design](#-architecture--design)
-4. [Project Structure](#-project-structure)
-5. [Component Architecture](#-component-architecture)
-6. [Test Execution Flow](#-test-execution-flow)
-7. [Available Test Cases](#-available-test-cases)
-8. [Test Management](#-test-management)
-9. [Configuration](#-configuration)
-10. [Running Tests](#-running-tests)
-11. [Test Data Management](#-test-data-management)
+2. [Architecture & Design](#-architecture--design)
+3. [Project Structure](#-project-structure)
+4. [Component Architecture](#-component-architecture)
+5. [Test Execution Flow](#-test-execution-flow)
+6. [Available Test Cases](#-available-test-cases)
+7. [Test Management](#-test-management)
+8. [Configuration](#-configuration)
+9. [Running Tests](#-running-tests)
+10. [Test Data Management](#-test-data-management)
+11. [Reporting & Analytics](#-reporting--analytics)
 12. [Browser Features](#-browser-features)
 13. [Code Standards](#-code-standards)
 14. [Git Management](#-git-management)
@@ -33,46 +33,6 @@ This is a robust Selenium WebDriver based test automation framework built with m
 | **Driver Management** | WebDriverManager | Automated browser driver setup |
 | **Build Tool** | Maven | Dependency and build management |
 
-## 🔄 Recent Updates (v1.2)
-
-### 📝 Class Refactoring
-
-The framework has undergone a comprehensive class refactoring to follow modern Java conventions:
-
-#### **Renamed Classes:**
-- `ActionsBaseClass` → `BaseAction`
-- `ElementVerification` → `ElementValidator`
-- `ExplicitWait` → `WaitManager`
-- `JavaScriptActions` → `JavaScriptHelper`
-- `UIElements` → `WebElementInteractor`
-- `UtilityClass` → `InteractionHelper`
-- `MyProperties` → `FrameworkProperties`
-- `WebDriverConfig` → `BrowserConfiguration`
-- `TestListener` → `TestExecutionListener`
-- `ElementTests` → `ElementValidationTests`
-- `BasePage` → `BasePageObject`
-
-#### **Interface Updates:**
-- `IUIElements` → `WebElementInteraction`
-- `IElementVerification` → `IElementValidator`
-- `IExplicitWait` → `WaitOperations`
-- `IJavaScriptActions` → `JavaScriptOperations`
-
-#### **Impact:**
-- ✅ Improved code readability and maintainability
-- ✅ Consistent naming patterns throughout framework
-- ✅ All Maven commands updated to use new class names
-- ✅ Comprehensive JavaDoc documentation added
-- ✅ Spring dependency injection properly configured
-
-#### **Updated Test Commands:**
-```bash
-# Updated test class name
-mvn test -Dtest=ElementValidationTests
-
-# Updated test method
-mvn test -Dtest=ElementValidationTests#whenPageLoads_thenDisplayCorrectTitle
-```
 
 ## 🏛️ Architecture & Design
 
@@ -1232,9 +1192,6 @@ For framework-specific issues:
 4. Consult the project documentation
 
 Remember: The framework is designed to be robust and maintainable. Most issues are related to environment setup or configuration.
-        .build();
-}
-```
 
 ### 🗃️ Test Data Strategies
 
@@ -1245,6 +1202,403 @@ Remember: The framework is designed to be robust and maintainable. Most issues a
 | **External Files** | Large datasets | JSON, CSV, Excel |
 | **Database** | Complex data relationships | SQL queries |
 | **API** | Integration testing | REST clients |
+
+## 📊 Reporting & Analytics
+
+### 🎯 Reporting Architecture
+
+```mermaid
+graph TB
+    subgraph "Test Execution Layer"
+        A[TestNG Tests] --> B[TestExecutionListener]
+        B --> C[Allure Results]
+    end
+    
+    subgraph "Data Collection Layer"
+        D[Screenshots] --> E[Allure Attachments]
+        F[Logs] --> G[Allure Reports]
+        H[Test Metrics] --> I[Analytics]
+    end
+    
+    subgraph "Reporting Layer"
+        J[Allure Report] --> K[HTML Dashboard]
+        L[TestNG Reports] --> M[XML Reports]
+        N[Custom Reports] --> O[Analytics Dashboard]
+    end
+    
+    subgraph "Analytics Layer"
+        P[Pass/Fail Rates] --> Q[Trend Analysis]
+        R[Execution Times] --> S[Performance Metrics]
+        T[Error Analysis] --> U[Defect Tracking]
+    end
+    
+    C --> E
+    C --> G
+    E --> J
+    G --> J
+    J --> K
+    M --> P
+    O --> Q
+    
+    style A fill:#e1f5fe
+    style J fill:#e8f5e8
+    style P fill:#fff3e0
+    style Q fill:#f3e5f5
+```
+
+### 📈 Allure Reporting Integration
+
+#### Allure Report Generation Flow
+
+```mermaid
+sequenceDiagram
+    participant T as TestNG Test
+    participant L as TestExecutionListener
+    participant A as Allure API
+    participant R as Allure Report
+    
+    T->>L: 1. Test Started
+    L->>A: 2. Create Test Case
+    T->>L: 3. Test Failed/Passed
+    L->>A: 4. Add Screenshot
+    L->>A: 5. Add Logs
+    L->>A: 6. Update Status
+    T->>L: 7. Test Finished
+    L->>A: 8. Finalize Test
+    A->>R: 9. Generate Report
+```
+
+#### Allure Configuration
+
+**Maven Dependencies**:
+```xml
+<dependency>
+    <groupId>io.qameta.allure</groupId>
+    <artifactId>allure-testng</artifactId>
+    <version>2.24.0</version>
+    <scope>test</scope>
+</dependency>
+```
+
+**Allure Properties**:
+```properties
+# allure.properties
+allure.results.directory=target/allure-results
+allure.link.issue.pattern=https://github.com/user/repo/issues/{}
+allure.link.tms.pattern=https://github.com/user/repo/tasks/{}
+```
+
+### 📋 TestNG Reporting
+
+#### Surefire Reports Configuration
+
+```xml
+<!-- pom.xml -->
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.1.2</version>
+    <configuration>
+        <suiteXmlFiles>
+            <suiteXmlFile>src/test/resources/Element-Tests.xml</suiteXmlFile>
+        </suiteXmlFiles>
+        <properties>
+            <property>
+                <name>usedefaultlisteners</name>
+                <value>false</value>
+            </property>
+        </properties>
+    </configuration>
+</plugin>
+```
+
+#### TestNG Report Types
+
+| Report Type | Location | Format | Usage |
+|-------------|----------|--------|-------|
+| **TestNG HTML** | `target/surefire-reports/html` | HTML | Quick test results |
+| **TestNG XML** | `target/surefire-reports/testng-results.xml` | XML | CI/CD integration |
+| **Emailable Report** | `target/surefire-reports/emailable-report.html` | HTML | Email sharing |
+| **JUnit XML** | `target/surefire-reports/TEST-*.xml` | XML | Jenkins integration |
+
+### 🎨 Custom Reporting Features
+
+#### Screenshot Capture
+
+```java
+@Attachment("Screenshot on failure")
+public byte[] attachScreenShot() {
+    try {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    } catch (WebDriverException e) {
+        log.error("Failed to capture screenshot: {}", e.getMessage());
+        return new byte[0];
+    }
+}
+```
+
+#### Test Metadata Enhancement
+
+```java
+@Epic("Web Elements Validation")
+@Feature("Form Interactions")
+@Story("Text Box Form Submission")
+@Severity(SeverityLevel.CRITICAL)
+@Description("Verify that text box form submission displays correct output")
+@Test(dataProvider = "User Data", dataProviderClass = UserDataProvider.class)
+public void whenSubmitTextBoxFormWithValidData_thenDisplayCorrectOutput(UserModal userData) {
+    // Test implementation
+}
+```
+
+### 📊 Analytics & Metrics
+
+#### Test Execution Metrics
+
+```mermaid
+pie
+    title Test Success Rate
+    "Passed Tests (85%)" : 85
+    "Failed Tests (15%)" : 15
+```
+
+#### Performance Metrics Dashboard
+
+| Metric | Description | Target | Current |
+|--------|-------------|--------|---------|
+| **Test Success Rate** | Percentage of passed tests | ≥ 90% | 85% |
+| **Average Execution Time** | Time per test execution | ≤ 30s | 25s |
+| **Test Coverage** | Code coverage percentage | ≥ 80% | 75% |
+| **Flakiness Rate** | Inconsistent test failures | ≤ 5% | 3% |
+
+#### Trend Analysis
+
+```mermaid
+graph LR
+    A[Week 1] -->|85%| B[Week 2]
+    B -->|88%| C[Week 3]
+    C -->|82%| D[Week 4]
+    D -->|90%| E[Week 5]
+    
+    style A fill:#ffcdd2
+    style B fill:#fff3e0
+    style C fill:#fff3e0
+    style D fill:#ffcdd2
+    style E fill:#c8e6c9
+```
+
+### 🔧 Report Generation Commands
+
+#### Generate Allure Reports
+
+```bash
+# Generate and serve Allure report
+mvn clean test
+mvn allure:serve
+
+# Generate static Allure report
+mvn allure:generate
+
+# Open generated report
+mvn allure:open
+```
+
+#### Generate TestNG Reports
+
+```bash
+# Generate TestNG reports with custom formatting
+mvn clean test surefire-report:report
+
+# Generate reports with specific groups
+mvn test -Dgroups=SanityTest surefire-report:report
+
+# Generate reports for specific test class
+mvn test -Dtest=ElementValidationTests surefire-report:report
+```
+
+### 📱 Report Viewing Options
+
+#### Local Report Viewing
+
+1. **Allure Live Server**:
+   ```bash
+   mvn allure:serve
+   # Opens at http://localhost:8080
+   ```
+
+2. **Static HTML Report**:
+   ```bash
+   mvn allure:generate
+   # View at target/site/allure/index.html
+   ```
+
+3. **TestNG HTML Report**:
+   ```bash
+   # View at target/surefire-reports/html/index.html
+   ```
+
+#### CI/CD Integration
+
+**GitHub Actions Example**:
+```yaml
+- name: Generate Test Reports
+  run: |
+    mvn clean test
+    mvn allure:generate
+    mvn surefire-report:report
+
+- name: Upload Allure Report
+  uses: actions/upload-artifact@v3
+  with:
+    name: allure-report
+    path: target/site/allure/
+
+- name: Upload TestNG Report
+  uses: actions/upload-artifact@v3
+  with:
+    name: testng-report
+    path: target/surefire-reports/
+```
+
+### 🎯 Report Customization
+
+#### Custom Allure Categories
+
+```java
+public class AllureConfig {
+    @BeforeEach
+    public void configureAllure() {
+        Allure.getLifecycle().updateTestCase(tr -> {
+            tr.setLabels(List.of(
+                new Label().setName("suite").setValue("Element Validation"),
+                new Label().setName("layer").setValue("UI")
+            ));
+        });
+    }
+}
+```
+
+#### Custom Report Templates
+
+```html
+<!-- custom-report-template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Test Report</title>
+    <style>
+        .pass { color: green; }
+        .fail { color: red; }
+        .skip { color: orange; }
+    </style>
+</head>
+<body>
+    <h1>Test Execution Report</h1>
+    <div id="results"></div>
+    <script>
+        // Custom JavaScript for report generation
+    </script>
+</body>
+</html>
+```
+
+### 📋 Report Distribution
+
+#### Automated Report Distribution
+
+| Channel | Trigger | Format | Audience |
+|---------|---------|--------|----------|
+| **Email** | Test completion | HTML/PDF | Stakeholders |
+| **Slack** | Test failure | JSON | Development Team |
+| **Teams** | Daily summary | Adaptive Card | Project Managers |
+| **Dashboard** | Real-time | Web UI | All Team Members |
+
+#### Report Scheduling
+
+```bash
+# Cron job for daily report generation
+0 18 * * * cd /path/to/project && mvn clean test && mvn allure:generate && python send_reports.py
+
+# Weekly trend analysis
+0 9 * * 1 cd /path/to/project && python generate_trends.py && mail -s "Weekly Test Trends" team@company.com < trends.html
+```
+
+### 🔍 Report Analysis
+
+#### Failure Analysis Workflow
+
+```mermaid
+flowchart TD
+    A[Test Failure] --> B{Is Flaky?}
+    B -->|Yes| C[Mark as Unstable]
+    B -->|No| D[Analyze Root Cause]
+    D --> E{Environment Issue?}
+    E -->|Yes| F[Report Infrastructure]
+    E -->|No| G[Create Bug Ticket]
+    G --> H[Assign to Developer]
+    C --> I[Monitor Trend]
+    F --> J[Fix Environment]
+    H --> K[Implement Fix]
+    J --> L[Retest]
+    K --> L
+    L --> M{Pass?}
+    M -->|Yes| N[Close Ticket]
+    M -->|No| O[Reinvestigate]
+    
+    style A fill:#ffcdd2
+    style N fill:#c8e6c9
+    style O fill:#ffcdd2
+```
+
+#### Key Performance Indicators (KPIs)
+
+- **Test Execution Velocity**: Tests per hour
+- **Defect Detection Rate**: Bugs found per 100 tests
+- **Automation ROI**: Manual hours saved vs automation effort
+- **Environment Stability**: Infrastructure uptime percentage
+
+### 🚀 Advanced Reporting Features
+
+#### Real-time Monitoring
+
+```java
+@Component
+public class RealTimeMonitor {
+    
+    @EventListener
+    public void handleTestStart(TestStartEvent event) {
+        // Send real-time updates to dashboard
+        websocketTemplate.convertAndSend("/topic/tests", 
+            new TestStatus(event.getTestId(), "RUNNING"));
+    }
+    
+    @EventListener
+    public void handleTestFinish(TestFinishEvent event) {
+        // Update real-time metrics
+        metricsCollector.recordExecution(event.getResult());
+    }
+}
+```
+
+#### Predictive Analytics
+
+```mermaid
+graph TB
+    A[Historical Test Data] --> B[Machine Learning Model]
+    B --> C[Failure Prediction]
+    B --> D[Execution Time Estimation]
+    B --> E[Optimization Recommendations]
+    
+    C --> F[Preventive Actions]
+    D --> G[Resource Planning]
+    E --> H[Test Improvement]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#fff3e0
+    style D fill:#e8f5e8
+    style E fill:#fce4ec
+```
 
 ### 🔗 Related Resources
 
