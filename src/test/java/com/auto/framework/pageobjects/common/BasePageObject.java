@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.auto.framework.actions.BaseAction;
-import com.auto.framework.interfaces.ElementValidator;
+import com.auto.framework.interfaces.IElementValidator;
 import com.auto.framework.interfaces.WaitOperations;
 import com.auto.framework.interfaces.JavaScriptOperations;
 import com.auto.framework.interfaces.WebElementInteraction;
@@ -47,7 +47,7 @@ import lombok.extern.slf4j.Slf4j;
  * @see com.auto.framework.interfaces.JavaScriptOperations
  */
 @Slf4j
-@Component
+@Component("basePageObject")
 public class BasePageObject extends BaseAction {
 
     /**

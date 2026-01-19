@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.AfterMethod;
@@ -49,6 +50,7 @@ public class ElementValidationTests extends AbstractTestNGSpringContextTests {
      * Autowired BasePageObject instance providing common page functionality.
      */
     @Autowired
+    @Qualifier("basePageObject")
     private BasePageObject basePage;
 
     /**
