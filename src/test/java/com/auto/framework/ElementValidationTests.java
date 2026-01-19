@@ -50,7 +50,6 @@ public class ElementValidationTests extends AbstractTestNGSpringContextTests {
      * Autowired BasePageObject instance providing common page functionality.
      */
     @Autowired
-    @Qualifier("basePageObject")
     private BasePageObject basePage;
 
     /**
