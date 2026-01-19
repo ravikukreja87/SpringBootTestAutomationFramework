@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-01-19T20:37:29 IST" name="Surefire suite" finished-at="2026-01-19T20:37:45 IST" duration-ms="15561">
+    <groups>
+      <group name="Sanity Test">
+        <method signature="ElementTests.whenPageLoads_thenDisplayCorrectTitle()[pri:0, instance:com.auto.framework.ElementTests@697d6ded]" name="whenPageLoads_thenDisplayCorrectTitle" class="com.auto.framework.ElementTests"/>
+      </group> <!-- Sanity Test -->
+    </groups>
+    <test started-at="2026-01-19T20:37:29 IST" name="Surefire test" finished-at="2026-01-19T20:37:45 IST" duration-ms="15561">
+      <class name="com.auto.framework.ElementTests">
+        <test-method is-config="true" signature="springTestContextBeforeTestClass()[pri:0, instance:com.auto.framework.ElementTests@697d6ded]" started-at="2026-01-19T20:37:29 IST" name="springTestContextBeforeTestClass" finished-at="2026-01-19T20:37:29 IST" duration-ms="66" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method is-config="true" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.auto.framework.ElementTests@697d6ded]" started-at="2026-01-19T20:37:29 IST" name="springTestContextBeforeTestMethod" finished-at="2026-01-19T20:37:34 IST" duration-ms="4808" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.auto.framework.ElementTests.whenPageLoads_thenDisplayCorrectTitle()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method is-config="true" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.auto.framework.ElementTests@697d6ded]" started-at="2026-01-19T20:37:34 IST" name="springTestContextPrepareTestInstance" finished-at="2026-01-19T20:37:34 IST" duration-ms="10" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method signature="whenPageLoads_thenDisplayCorrectTitle()[pri:0, instance:com.auto.framework.ElementTests@697d6ded]" started-at="2026-01-19T20:37:34 IST" name="whenPageLoads_thenDisplayCorrectTitle" finished-at="2026-01-19T20:37:43 IST" duration-ms="8934" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- whenPageLoads_thenDisplayCorrectTitle -->
+        <test-method is-config="true" signature="teardownDriver()[pri:0, instance:com.auto.framework.ElementTests@697d6ded]" started-at="2026-01-19T20:37:43 IST" name="teardownDriver" finished-at="2026-01-19T20:37:45 IST" duration-ms="1319" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardownDriver -->
+        <test-method is-config="true" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.auto.framework.ElementTests@697d6ded]" started-at="2026-01-19T20:37:45 IST" name="springTestContextAfterTestMethod" finished-at="2026-01-19T20:37:45 IST" duration-ms="25" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.auto.framework.ElementTests.whenPageLoads_thenDisplayCorrectTitle()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method is-config="true" signature="springTestContextAfterTestClass()[pri:0, instance:com.auto.framework.ElementTests@697d6ded]" started-at="2026-01-19T20:37:45 IST" name="springTestContextAfterTestClass" finished-at="2026-01-19T20:37:45 IST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.auto.framework.ElementTests -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>
