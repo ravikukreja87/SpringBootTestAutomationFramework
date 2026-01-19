@@ -17,20 +17,52 @@ import lombok.extern.slf4j.Slf4j;
 
 /************************************************************************************************************************
  * @Author : Ravi Kukreja
- * @Description : Test listener implementation to manage driver and log results
- * @Version : 1.0
+ * @Description : Test listener implementation to manage driver lifecycle and log test results with Allure
+ *                  reporting integration. This class extends TestListenerAdapter to provide custom test
+ *                  execution handling including driver cleanup, screenshot capture on failure, and
+ *                  comprehensive test logging for debugging and reporting purposes.
+ * @Version : 1.1
  ************************************************************************************************************************/
+
+/**
+ * TestNG listener implementation for managing WebDriver lifecycle and test reporting.
+ * This class provides comprehensive test execution management including driver cleanup,
+ * screenshot capture on failures, and integration with Allure reporting framework.
+ * 
+ * <p>The listener is scoped to 'driverscope' ensuring it operates on the correct
+ * WebDriver instance for each test thread during parallel execution.</p>
+ * 
+ * @author Ravi Kukreja
+ * @version 1.1
+ * @since 1.0
+ * @see org.testng.TestListenerAdapter
+ * @see org.testng.ITestResult
+ * @see io.qameta.allure.Allure
+ * @see org.openqa.selenium.WebDriver
+ */
 @Slf4j
 @Component
 @Scope("driverscope")
 public class TestListener extends TestListenerAdapter {
 
+	/**
+	 * Called when a test starts execution.
+	 * Logs the test start and performs any necessary setup.
+	 * 
+	 * @param iTestResult The test result object containing test information
+	 */
 	@Override
 	public void onTestStart(ITestResult iTestResult) {
 		super.onTestStart(iTestResult);
 		log.info("Started: {}", iTestResult.getName());
 	}
 
+	/**
+	 * Called when a test completes successfully.
+	 * Updates test reports and logs successful completion.
+	 * 
+	 * @param iTestResult The test result object containing test information
+	 */
 	@Override
 	public void onTestSuccess(ITestResult iTestResult) {
 		super.onTestSuccess(iTestResult);
@@ -38,6 +70,12 @@ public class TestListener extends TestListenerAdapter {
 		log.info("Finished successfully: {}", iTestResult.getName());
 	}
 
+	/**
+	 * Called when a test is skipped.
+	 * Updates test reports and logs the skip event.
+	 * 
+	 * @param iTestResult The test result object containing test information
+	 */
 	@Override
 	public void onTestSkipped(ITestResult iTestResult) {
 		super.onTestSkipped(iTestResult);
@@ -45,6 +83,12 @@ public class TestListener extends TestListenerAdapter {
 		log.info("Skipped: {}", iTestResult.getName());
 	}
 
+	/**
+	 * Called when a test fails.
+	 * Captures screenshots, updates reports, and logs failure details.
+	 * 
+	 * @param iTestResult The test result object containing test information and failure details
+	 */
 	@Override
 	public void onTestFailure(ITestResult iTestResult) {
 		super.onTestFailure(iTestResult);
@@ -52,6 +96,13 @@ public class TestListener extends TestListenerAdapter {
 		testReportUpdate(iTestResult);
 	}
 
+	/**
+	 * Captures a screenshot of the current browser state and attaches it to Allure reports.
+	 * This method is annotated with @Attachment to automatically include screenshots in test reports.
+	 * 
+	 * @param driver The WebDriver instance to capture screenshot from
+	 * @return Byte array representing the screenshot image, or empty array if capture fails
+	 */
 	@Attachment(value = "Screen shot", type = "image/png", fileExtension = ".png")
 	private byte[] attachScreenShot(WebDriver driver) {
 		try {
@@ -62,6 +113,12 @@ public class TestListener extends TestListenerAdapter {
 		return new byte[0];
 	}
 
+	/**
+	 * Updates Allure test reports with test information and screenshots.
+	 * This method formats test data and updates the Allure lifecycle with test details.
+	 * 
+	 * @param iTestResult The test result object containing test information
+	 */
 	public void testReportUpdate(ITestResult iTestResult) {
 		String testSetNumber = iTestResult.getName() + " " + (((TestResult) iTestResult).getParameterIndex() + 1);
 
