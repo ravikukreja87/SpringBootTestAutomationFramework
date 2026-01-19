@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import com.auto.framework.config.MyProperties;
+import com.auto.framework.config.FrameworkProperties;
 
 /************************************************************************************************************************
  * @Author : Ravi Kukreja
@@ -60,13 +60,13 @@ public class BaseAction {
      * Contains settings such as browser type, timeouts, URLs, and grid configuration.
      */
     @Autowired
-    public MyProperties myProperties;
+    public FrameworkProperties frameworkProperties;
     
     /**
      * Utility class instance providing helper methods for common UI interactions.
      * Includes scroll helpers and other utility functions for web automation.
      */
     @Autowired
-    public UtilityClass utilityClass;
+    public InteractionHelper interactionHelper;
 
 }
