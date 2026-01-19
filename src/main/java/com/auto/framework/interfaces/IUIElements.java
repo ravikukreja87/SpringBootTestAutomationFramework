@@ -7,9 +7,27 @@ import org.openqa.selenium.WebDriver;
 
 /************************************************************************************************************************
  * @Author : Ravi Kukreja
- * @Description : Interface for UIElement actions
- * @Version : 1.0
+ * @Description : Interface for UIElement actions defining the contract for web element interactions.
+ *                  This interface provides methods for basic operations like click and sendKeys, as well as
+ *                  advanced operations like nested menu navigation, relative locators, and table interactions.
+ * @Version : 1.1
  ************************************************************************************************************************/
+
+/**
+ * Interface defining the contract for UI element interactions in web automation.
+ * This interface provides a comprehensive set of methods for interacting with web elements,
+ * ranging from basic operations to advanced navigation and locator strategies.
+ * 
+ * <p>Implementations of this interface should provide automatic scrolling to ensure
+ * elements are visible before interaction and include proper error handling.</p>
+ * 
+ * @author Ravi Kukreja
+ * @version 1.1
+ * @since 1.0
+ * @see org.openqa.selenium.WebDriver
+ * @see org.openqa.selenium.WebElement
+ * @see org.openqa.selenium.By
+ */
 public interface IUIElements {
 
 	WebDriver getWebDriver();
