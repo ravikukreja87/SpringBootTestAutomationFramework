@@ -5,7 +5,7 @@ import static com.auto.framework.constants.Constants.CHECKBOX_PAGE;
 import org.openqa.selenium.By;
 import org.springframework.stereotype.Component;
 
-import com.auto.framework.pageobjects.common.BasePage;
+import com.auto.framework.pageobjects.common.BasePageObject;
 
 import io.qameta.allure.Step;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
  ************************************************************************************************************************/
 @Component
 @AllArgsConstructor
-public class CheckBoxPF extends BasePage {
+public class CheckBoxPF extends BasePageObject {
 
 	private static By level1Menu = By.xpath("//*[@id='tree-node']/ol/li/span/label/span[3]");
 	private static By level2Menu = By.xpath("//*[@id='tree-node']/ol/li/ol/li/span/label/span[3]");
@@ -27,31 +27,31 @@ public class CheckBoxPF extends BasePage {
 	private static By successMsg = By.className("text-success");
 
 	public void openCheckBoxPage() {
-		iUIElements.openURL(myProperties.getDemoUrl() + CHECKBOX_PAGE);
+		webElementInteraction.openURL(frameworkProperties.getDemoUrl() + CHECKBOX_PAGE);
 	}
 
 	@Step("Expand Level 1 Menu")
 	public void expandLevel1Menu() {
-		iUIElements.clickRelativeLeftElement(level1Menu, expandButtonRL);
+		webElementInteraction.clickRelativeLeftElement(level1Menu, expandButtonRL);
 	}
 
 	@Step("Expand Level 2 Menu")
 	public void expandLevel2Menu(String textForSearch) {
-		iUIElements.searchAndClickRelativeLeftElement(level2Menu, expandButtonRL, textForSearch);
+		webElementInteraction.searchAndClickRelativeLeftElement(level2Menu, expandButtonRL, textForSearch);
 	}
 
 	@Step("Expand Level 3 Menu")
 	public void expandLevel3Menu(String textForSearch) {
-		iUIElements.searchAndClickRelativeLeftElement(level3Menu, expandButtonRL, textForSearch);
+		webElementInteraction.searchAndClickRelativeLeftElement(level3Menu, expandButtonRL, textForSearch);
 	}
 
 	@Step("Select Level 4 Option")
 	public void clickLevel4Option(String textForSearch) {
-		iUIElements.searchAndClickByText(level4Menu, textForSearch);
+		webElementInteraction.searchAndClickByText(level4Menu, textForSearch);
 	}
 
 	public String getConfirmationMessage() {
-		return iElementVerification.getText(successMsg);
+		return elementValidator.getText(successMsg);
 	}
 
 }

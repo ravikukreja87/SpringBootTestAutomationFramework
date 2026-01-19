@@ -5,7 +5,7 @@ import static com.auto.framework.constants.Constants.RADIOBUTTON_PAGE;
 import org.openqa.selenium.By;
 import org.springframework.stereotype.Component;
 
-import com.auto.framework.pageobjects.common.BasePage;
+import com.auto.framework.pageobjects.common.BasePageObject;
 
 import io.qameta.allure.Step;
 import lombok.AllArgsConstructor;
@@ -17,22 +17,22 @@ import lombok.AllArgsConstructor;
  ************************************************************************************************************************/
 @Component
 @AllArgsConstructor
-public class RadioButtonPF extends BasePage {
+public class RadioButtonPF extends BasePageObject {
 
 	private static By radioButtons = By.xpath("//*[@class='custom-control custom-radio custom-control-inline']");
 	private static By successMsg = By.className("text-success");
 
 	public void openRadioButtonPage() {
-		iUIElements.openURL(myProperties.getDemoUrl() + RADIOBUTTON_PAGE);
+		webElementInteraction.openURL(frameworkProperties.getDemoUrl() + RADIOBUTTON_PAGE);
 	}
 
 	@Step("Clicked on the Radio Button")
 	public void clickRadioButton(String text) {
-		iUIElements.searchAndClickByText(radioButtons, text);
+		webElementInteraction.searchAndClickByText(radioButtons, text);
 	}
 
 	public String getConfirmationMessage() {
-		return iElementVerification.getText(successMsg);
+		return elementValidator.getText(successMsg);
 	}
 
 }

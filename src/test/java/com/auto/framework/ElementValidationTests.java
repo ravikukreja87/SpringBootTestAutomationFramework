@@ -12,7 +12,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.auto.framework.listeners.TestExecutionListener;
-import com.auto.framework.pageobjects.common.BasePage;
+import com.auto.framework.pageobjects.common.BasePageObject;
 import com.auto.framework.pageobjects.demoqa.ElementsPage;
 import com.auto.framework.testdata.UserDataProvider;
 import com.auto.framework.testdata.UserModal;
@@ -46,10 +46,10 @@ import com.auto.framework.testdata.UserModal;
 public class ElementValidationTests extends AbstractTestNGSpringContextTests {
 
     /**
-     * Autowired BasePage instance providing common page functionality.
+     * Autowired BasePageObject instance providing common page functionality.
      */
     @Autowired
-    private BasePage basePage;
+    private BasePageObject basePage;
 
     /**
      * Autowired ElementsPage instance for Elements page specific interactions.

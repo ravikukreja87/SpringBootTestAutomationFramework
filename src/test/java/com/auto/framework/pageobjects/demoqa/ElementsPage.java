@@ -5,7 +5,7 @@ import static com.auto.framework.constants.Constants.ELEMENTS_PAGE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.auto.framework.pageobjects.common.BasePage;
+import com.auto.framework.pageobjects.common.BasePageObject;
 
 import io.qameta.allure.Step;
 
@@ -15,7 +15,7 @@ import io.qameta.allure.Step;
  * @Version : 1.0
  ************************************************************************************************************************/
 @Component
-public class ElementsPage extends BasePage {
+public class ElementsPage extends BasePageObject {
 
 	@Autowired
 	public TextBoxPF textBoxPF;
@@ -31,12 +31,12 @@ public class ElementsPage extends BasePage {
 
 	@Step("Open webpage")
 	public void openElementsPage() {
-		iUIElements.openURL(myProperties.getDemoUrl() + ELEMENTS_PAGE);
+		webElementInteraction.openURL(frameworkProperties.getDemoUrl() + ELEMENTS_PAGE);
 	}
 
 	@Step("Verify Page Title")
 	public String getPageTitle() {
-		return iElementVerification.getTitle();
+		return elementValidator.getTitle();
 	}
 
 }

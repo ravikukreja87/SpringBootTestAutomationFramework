@@ -5,7 +5,7 @@ import static com.auto.framework.constants.Constants.TEXTBOX_PAGE;
 import org.openqa.selenium.By;
 import org.springframework.stereotype.Component;
 
-import com.auto.framework.pageobjects.common.BasePage;
+import com.auto.framework.pageobjects.common.BasePageObject;
 import com.auto.framework.testdata.UserModal;
 
 import io.qameta.allure.Step;
@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @AllArgsConstructor
 @Slf4j
-public class TextBoxPF extends BasePage {
+public class TextBoxPF extends BasePageObject {
 
 	private static By fullnameTF = By.id("userName");
 	private static By emailTF = By.id("userEmail");
@@ -34,7 +34,7 @@ public class TextBoxPF extends BasePage {
 	private static By permAddText = By.cssSelector("p#permanentAddress");
 
 	public void openTextBoxPage() {
-		iUIElements.openURL(myProperties.getDemoUrl() + TEXTBOX_PAGE);
+		webElementInteraction.openURL(frameworkProperties.getDemoUrl() + TEXTBOX_PAGE);
 	}
 
 	public void updateTextBoxes(UserModal userData) {
@@ -47,34 +47,34 @@ public class TextBoxPF extends BasePage {
 
 	@Step("Enter Fullname")
 	public void enterFullname(String fullname) {
-		iUIElements.sendKeys(fullnameTF, fullname);
+		webElementInteraction.sendKeys(fullnameTF, fullname);
 	}
 
 	@Step("Enter Email")
 	public void enterEmail(String email) {
-		iUIElements.sendKeys(emailTF, email);
+		webElementInteraction.sendKeys(emailTF, email);
 	}
 
 	@Step("Enter Current Address")
 	public void enterCurrentAddress(String currAddress) {
-		iUIElements.sendKeys(currentAddressTF, currAddress);
+		webElementInteraction.sendKeys(currentAddressTF, currAddress);
 	}
 
 	@Step("Enter Permanent Address")
 	public void enterPermanentAddress(String permAddress) {
-		iUIElements.sendKeys(permanentAddressTF, permAddress);
+		webElementInteraction.sendKeys(permanentAddressTF, permAddress);
 	}
 
 	@Step("Submit form")
 	public void submitForm() {
-		iUIElements.click(submitButton);
+		webElementInteraction.click(submitButton);
 	}
 
 	public UserModal getConfirmationMessage() {
-		UserModal userModal = UserModal.builder().firstName(iElementVerification.getText(nameText).split(":")[1])
-				.email(iElementVerification.getText(emailText).split(":")[1])
-				.currAddress(iElementVerification.getText(currAddText).split(":")[1])
-				.permAddress(iElementVerification.getText(permAddText).split(":")[1]).build();
+		UserModal userModal = UserModal.builder().firstName(elementValidator.getText(nameText).split(":")[1])
+				.email(elementValidator.getText(emailText).split(":")[1])
+				.currAddress(elementValidator.getText(currAddText).split(":")[1])
+				.permAddress(elementValidator.getText(permAddText).split(":")[1]).build();
 		log.info("Confirmation Data: {}", userModal);
 		return userModal;
 	}

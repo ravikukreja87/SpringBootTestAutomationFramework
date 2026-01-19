@@ -3,7 +3,7 @@
 <suite name="Suite" parallel="methods">
 	<test thread-count="5" name="Test">
 		<classes>
-			<class name="com.auto.framework.ElementTests" />
+			<class name="com.auto.framework.ElementValidationTests" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

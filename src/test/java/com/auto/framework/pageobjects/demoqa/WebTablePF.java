@@ -5,7 +5,7 @@ import static com.auto.framework.constants.Constants.WEBTABLES_PAGE;
 import org.openqa.selenium.By;
 import org.springframework.stereotype.Component;
 
-import com.auto.framework.pageobjects.common.BasePage;
+import com.auto.framework.pageobjects.common.BasePageObject;
 import com.auto.framework.testdata.UserModal;
 
 import io.qameta.allure.Step;
@@ -18,7 +18,7 @@ import lombok.AllArgsConstructor;
  ************************************************************************************************************************/
 @Component
 @AllArgsConstructor
-public class WebTablePF extends BasePage {
+public class WebTablePF extends BasePageObject {
 
 	private static By addButton = By.cssSelector("#addNewRecordButton");
 	private static By firstNameTextField = By.cssSelector("#firstName");
@@ -29,18 +29,18 @@ public class WebTablePF extends BasePage {
 	private static By departmentTextField = By.id("department");
 
 	public void openWebTablesPage() {
-		iUIElements.openURL(myProperties.getDemoUrl() + WEBTABLES_PAGE);
+		webElementInteraction.openURL(frameworkProperties.getDemoUrl() + WEBTABLES_PAGE);
 	}
 
 	@Step("Add User Data")
 	public void addUserData(UserModal userData) {
-		iUIElements.click(addButton);
-		iUIElements.sendKeys(firstNameTextField, userData.getFirstName());
-		iUIElements.sendKeys(lastNameTextField, userData.getLastName());
-		iUIElements.sendKeys(emailTextField, userData.getEmail());
-		iUIElements.sendKeys(ageTextField, userData.getAge());
-		iUIElements.sendKeys(salaryTextField, userData.getSalary());
-		iUIElements.sendKeys(departmentTextField, userData.getDepartment());
+		webElementInteraction.click(addButton);
+		webElementInteraction.sendKeys(firstNameTextField, userData.getFirstName());
+		webElementInteraction.sendKeys(lastNameTextField, userData.getLastName());
+		webElementInteraction.sendKeys(emailTextField, userData.getEmail());
+		webElementInteraction.sendKeys(ageTextField, userData.getAge());
+		webElementInteraction.sendKeys(salaryTextField, userData.getSalary());
+		webElementInteraction.sendKeys(departmentTextField, userData.getDepartment());
 	}
 
 

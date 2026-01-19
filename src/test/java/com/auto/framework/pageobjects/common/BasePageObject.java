@@ -62,7 +62,7 @@ public class BasePageObject extends BaseAction {
      * Provides methods for retrieving page titles and element text content.
      */
     @Autowired
-    public ElementValidator elementValidator;
+    public IElementValidator elementValidator;
 
     /**
      * Autowired interface for explicit wait operations.
