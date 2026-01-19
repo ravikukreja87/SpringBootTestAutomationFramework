@@ -1,6 +1,23 @@
-# 🧪 Test Automation Framework Documentation
+# 🧬 Spring Boot - Selenium WebDriver Test Automation Framework
 
-> **Note**: This document provides comprehensive guidance on the test automation framework, its components, and how to work with it.
+<div align="center">
+
+![Framework Logo](https://img.shields.io/badge/Java-17-orange?style=for-the-badge&logo=java)
+![Framework Logo](https://img.shields.io/badge/Spring%20Boot-3.2.0-green?style=for-the-badge&logo=spring-boot)
+![Framework Logo](https://img.shields.io/badge/TestNG-7.9.0-blue?style=for-the-badge&logo=testng)
+![Framework Logo](https://img.shields.io/badge/Selenium-4.16.1-red?style=for-the-badge&logo=selenium)
+
+</div>
+
+<div align="center">
+
+### **Quantum Selenium Test Automation Ecosystem**
+
+**A Scientific Approach to Web Application Validation Using Advanced WebDriver Orchestration**
+
+</div>
+
+> **Note**: This document provides comprehensive guidance on the quantum-level test automation framework, its molecular components, and advanced orchestration patterns for web application validation.
 
 ## 📋 Table of Contents
 1. [Framework Overview](#-framework-overview)
