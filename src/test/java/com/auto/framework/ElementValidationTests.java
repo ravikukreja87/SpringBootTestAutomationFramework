@@ -13,7 +13,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.auto.framework.listeners.TestExecutionListener;
-import com.auto.framework.pageobjects.common.BasePageObject;
 import com.auto.framework.pageobjects.demoqa.ElementsPage;
 import com.auto.framework.testdata.UserDataProvider;
 import com.auto.framework.testdata.UserModal;
@@ -47,12 +46,6 @@ import com.auto.framework.testdata.UserModal;
 public class ElementValidationTests extends AbstractTestNGSpringContextTests {
 
     /**
-     * Autowired BasePageObject instance providing common page functionality.
-     */
-    @Autowired
-    private BasePageObject basePage;
-
-    /**
      * Autowired ElementsPage instance for Elements page specific interactions.
      */
     @Autowired
@@ -77,7 +70,7 @@ public class ElementValidationTests extends AbstractTestNGSpringContextTests {
      * @param userData Test data containing user information from the data provider
      * @throws AssertionError if any submitted data does not match the output
      */
-	@Test(dependsOnGroups = "SanityTest", dataProvider = "User Data", dataProviderClass = UserDataProvider.class)
+	@Test(dataProvider = "User Data", dataProviderClass = UserDataProvider.class)
 	public void whenSubmitTextBoxFormWithValidData_thenDisplayCorrectOutput(UserModal userData) {
 		elementsPage.textBoxPF.openTextBoxPage();
 
@@ -100,7 +93,7 @@ public class ElementValidationTests extends AbstractTestNGSpringContextTests {
      * 
      * @throws AssertionError if the confirmation message does not contain the expected text
      */
-	@Test(dependsOnGroups = "SanityTest")
+	@Test
 	public void whenSelectCheckBoxOption_thenDisplayConfirmation() {
 		elementsPage.checkBoxPF.openCheckBoxPage();
 
@@ -119,7 +112,7 @@ public class ElementValidationTests extends AbstractTestNGSpringContextTests {
      * 
      * @throws AssertionError if the confirmation message does not match the selected value
      */
-	@Test(dependsOnGroups = "SanityTest")
+	@Test
 	public void whenSelectRadioButton_thenDisplaySelectedValue() {
 		elementsPage.radioButtonPF.openRadioButtonPage();
 		elementsPage.radioButtonPF.clickRadioButton("Impressive");
@@ -145,7 +138,7 @@ public class ElementValidationTests extends AbstractTestNGSpringContextTests {
 	 */
 	@AfterMethod(alwaysRun = true)
 	public void teardownDriver() {
-		basePage.teardownDriver();
+		elementsPage.teardownDriver();
 	}
 
 }

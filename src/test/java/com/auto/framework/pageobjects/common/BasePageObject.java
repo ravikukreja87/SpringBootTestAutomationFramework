@@ -87,7 +87,7 @@ public class BasePageObject extends BaseAction {
         attachScreenShot();
         log.info("Closing Browsers");
         if (nonNull(driver)) {
-            driver.close();
+            driver.quit();
         }
     }
 
