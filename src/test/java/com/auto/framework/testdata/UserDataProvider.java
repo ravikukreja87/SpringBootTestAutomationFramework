@@ -6,8 +6,7 @@ import org.testng.annotations.DataProvider;
 import com.github.javafaker.Faker;
 
 /************************************************************************************************************************
- * @Date : Oct. 20, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : User Data Provider
  * @Version : 1.0
  ************************************************************************************************************************/

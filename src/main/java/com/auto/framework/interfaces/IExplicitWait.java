@@ -4,8 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 /************************************************************************************************************************
- * @Date : Sep. 25, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : Explicit wait interface
  * @Version : 1.0
  ************************************************************************************************************************/

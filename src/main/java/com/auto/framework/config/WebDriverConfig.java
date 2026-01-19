@@ -21,8 +21,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 
 /************************************************************************************************************************
- * @Date : Sep. 13, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : Bean configuration for WebDriver and WebDriver wait object
  *              based on browser
  * @Version : 1.0
@@ -43,7 +42,7 @@ public class WebDriverConfig {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-debugging-port=9222");
 		options.addArguments("--remote-allow-origins=*");
-//		options.addArguments("--headless=new");
+		options.addArguments("--start-maximized");
 		WebDriverManager.chromedriver().setup();
 		return new ChromeDriver(options);
 	}

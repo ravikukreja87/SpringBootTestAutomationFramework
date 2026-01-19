@@ -11,8 +11,7 @@ import io.qameta.allure.Step;
 import lombok.AllArgsConstructor;
 
 /************************************************************************************************************************
- * @Date : Oct. 23, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : Page object fragment for Radio button
  * @Version : 1.0
  ************************************************************************************************************************/

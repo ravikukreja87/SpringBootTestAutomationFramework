@@ -10,8 +10,7 @@ import com.auto.framework.pageobjects.common.BasePage;
 import io.qameta.allure.Step;
 
 /************************************************************************************************************************
- * @Date : Oct. 14, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : Elements page object
  * @Version : 1.0
  ************************************************************************************************************************/

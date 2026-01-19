@@ -8,8 +8,7 @@ import com.auto.framework.interfaces.IElementVerification;
 import lombok.extern.slf4j.Slf4j;
 
 /************************************************************************************************************************
- * @Date : Sep. 25, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description :Element verification interface implementation
  * @Version : 1.0
  ************************************************************************************************************************/

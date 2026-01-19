@@ -3,8 +3,7 @@ package com.auto.framework.interfaces;
 import org.openqa.selenium.By;
 
 /************************************************************************************************************************
- * @Date : Sep. 25, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : Element verification methods
  * @Version : 1.0
  ************************************************************************************************************************/

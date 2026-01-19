@@ -18,8 +18,7 @@ import com.auto.framework.interfaces.IUIElements;
 import lombok.extern.slf4j.Slf4j;
 
 /************************************************************************************************************************
- * @Date : Sep. 25, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : Selenium UI Elements implementation class
  * @Version : 1.0
  ************************************************************************************************************************/

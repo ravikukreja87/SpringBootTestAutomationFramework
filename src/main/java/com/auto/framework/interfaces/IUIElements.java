@@ -6,8 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /************************************************************************************************************************
- * @Date : Sep. 25, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : Interface for UIElement actions
  * @Version : 1.0
  ************************************************************************************************************************/

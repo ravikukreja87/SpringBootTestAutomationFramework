@@ -11,8 +11,7 @@ import io.qameta.allure.Step;
 import lombok.AllArgsConstructor;
 
 /************************************************************************************************************************
- * @Date : Nov. 14, 2023
- * @Author : nachrist
+ * @Author : Ravi Kukreja
  * @Description : Page fragment class for Checkbox interactions 
  * @Version : 1.0
  ************************************************************************************************************************/

@@ -12,8 +12,7 @@ import io.qameta.allure.Step;
 import lombok.AllArgsConstructor;
 
 /************************************************************************************************************************
- * @Date : Oct. 23, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : Page object fragment for Web Table
  * @Version : 1.0
  ************************************************************************************************************************/
@@ -44,8 +43,5 @@ public class WebTablePF extends BasePage {
 		iUIElements.sendKeys(departmentTextField, userData.getDepartment());
 	}
 
-//	public String getConfirmationMessage() {
-////		return iElementVerification.getText(successMsg);
-//	}
 
 }

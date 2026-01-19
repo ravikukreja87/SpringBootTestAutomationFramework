@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 import com.auto.framework.interfaces.IExplicitWait;
 
 /************************************************************************************************************************
- * @Date : Sep. 25, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : Explicit wait implementation class
  * @Version : 1.0
  ************************************************************************************************************************/

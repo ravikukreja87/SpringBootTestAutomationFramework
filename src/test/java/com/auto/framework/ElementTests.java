@@ -18,8 +18,7 @@ import com.auto.framework.testdata.UserDataProvider;
 import com.auto.framework.testdata.UserModal;
 
 /************************************************************************************************************************
- * @Date : Oct. 20, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : Element validation tests
  * @Version : 1.0
  ************************************************************************************************************************/
@@ -51,17 +50,14 @@ public class ElementTests extends AbstractTestNGSpringContextTests {
      */
 	@Test(dependsOnGroups = "Sanity Test", dataProvider = "User Data", dataProviderClass = UserDataProvider.class)
 	public void whenSubmitTextBoxFormWithValidData_thenDisplayCorrectOutput(UserModal userData) {
-		// Opens browser page
 		elementsPage.textBoxPF.openTextBoxPage();
 
-		// Perform testing actions
 		elementsPage.textBoxPF.enterFullname(userData.getFirstName());
 		elementsPage.textBoxPF.enterEmail(userData.getEmail());
 		elementsPage.textBoxPF.enterCurrentAddress(userData.getCurrAddress());
 		elementsPage.textBoxPF.enterPermanentAddress(userData.getPermAddress());
 		elementsPage.textBoxPF.submitForm();
 
-		// Assert data points
 		assertThat(elementsPage.textBoxPF.getConfirmationMessage().getFirstName(), is(userData.getFirstName()));
 		assertThat(elementsPage.textBoxPF.getConfirmationMessage().getEmail(), is(userData.getEmail()));
 		assertThat(elementsPage.textBoxPF.getConfirmationMessage().getCurrAddress(), is(userData.getCurrAddress()));
@@ -75,7 +71,7 @@ public class ElementTests extends AbstractTestNGSpringContextTests {
      * 
      * Note: This test is currently disabled. To enable, uncomment the @Test annotation.
      */
-	// @Test(dependsOnGroups = "Sanity Test")
+	@Test(dependsOnGroups = "Sanity Test")
 	public void whenSelectCheckBoxOption_thenDisplayConfirmation() {
 		elementsPage.checkBoxPF.openCheckBoxPage();
 

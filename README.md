@@ -11,6 +11,9 @@
 6. [Configuration](#-configuration)
 7. [Running Tests](#-running-tests)
 8. [Test Data Management](#-test-data-management)
+9. [Browser Features](#-browser-features)
+10. [Code Standards](#-code-standards)
+11. [Git Management](#-git-management)
 
 ## 🏗️ Framework Overview
 
@@ -18,10 +21,10 @@ This is a robust Selenium WebDriver based test automation framework built with m
 
 | Component | Technology | Purpose |
 |-----------|------------|---------|
-| **Core Framework** | Java 11+ | Base programming language |
-| **Dependency Injection** | Spring Boot 3.x | Application context and bean management |
-| **Testing Framework** | TestNG 7.6+ | Test execution and reporting |
-| **Browser Automation** | Selenium WebDriver 4.x | Web UI automation |
+| **Core Framework** | Java 17 | Base programming language |
+| **Dependency Injection** | Spring Boot 3.2.0 | Application context and bean management |
+| **Testing Framework** | TestNG 7.9.0 | Test execution and reporting |
+| **Browser Automation** | Selenium WebDriver 4.16.1 | Web UI automation |
 | **Page Objects** | Page Factory | Web element management |
 | **Driver Management** | WebDriverManager | Automated browser driver setup |
 | **Build Tool** | Maven | Dependency and build management |
@@ -152,12 +155,14 @@ sequenceDiagram
 - **Assertions**:
   - Confirmation message matches selected value
 
-### ⏸️ Disabled Tests
-
-#### 1. `whenSelectCheckBoxOption_thenDisplayConfirmation()`
-- **Status**: ❌ Disabled
+#### 3. `whenSelectCheckBoxOption_thenDisplayConfirmation()`
+- **Depends On**: `Sanity Test` group
+- **Status**: ✅ **Active** (Previously disabled, now enabled)
 - **Description**: Validates check box selection in a tree structure
-- **To Enable**: Uncomment `@Test` annotation
+- **Maven Command**:
+  ```bash
+  mvn test -Dtest=ElementTests#whenSelectCheckBoxOption_thenDisplayConfirmation
+  ```
 - **Test Flow**:
   ```mermaid
   graph TD
@@ -458,3 +463,95 @@ public UserModal generateUserData() {
 - [Selenium WebDriver](https://www.selenium.dev/documentation/)
 - [WebDriverManager](https://github.com/bonigarcia/webdrivermanager)
 - [Maven Surefire Plugin](https://maven.apache.org/surefire/maven-surefire-plugin/)
+
+## 🌐 Browser Features
+
+### 🖥️ Browser Configuration
+
+#### Chrome Browser Options
+The framework automatically configures Chrome with the following options:
+- **Maximized Window**: Browser launches in maximized mode for better visibility
+- **Remote Debugging**: Enabled on port 9222 for debugging capabilities
+- **Cross-Origin**: Allows remote origins for testing flexibility
+
+#### Selenium Grid Support
+When running against Selenium Grid, the browser window is automatically maximized after driver creation.
+
+### 📱 Browser Management
+
+```java
+// Chrome Driver Configuration
+ChromeOptions options = new ChromeOptions();
+options.addArguments("--start-maximized");
+options.addArguments("--remote-debugging-port=9222");
+options.addArguments("--remote-allow-origins=*");
+```
+
+## 📝 Code Standards
+
+### 🏷️ Author Attribution
+
+All source code files follow consistent author attribution:
+- **Author**: Ravi Kukreja
+- **Format**: Standardized header comments with author, description, and version
+- **Location**: Top of each Java class file
+
+### 🧹 Code Cleanliness
+
+#### Comment Policy
+- **Documentation Comments**: JavaDoc (`/** */`) preserved for API documentation
+- **Inline Comments**: Removed unnecessary inline code comments for cleaner codebase
+- **Disabled Code**: Removed all commented-out code to maintain clean repository
+
+#### Code Structure
+- **No Dead Code**: All commented-out functionality has been removed
+- **Active Tests**: Previously disabled tests have been enabled where appropriate
+- **Clean Imports**: Unnecessary imports and commented imports removed
+
+### 📋 File Headers
+
+Standard header format for all Java files:
+```java
+/************************************************************************************************************************
+ * @Author : Ravi Kukreja
+ * @Description : [Class description]
+ * @Version : 1.0
+ ************************************************************************************************************************/
+```
+
+## 📦 Git Management
+
+### 🚫 Git Ignore Configuration
+
+The following items are excluded from version control:
+- **Build Artifacts**: `target/` directory and all contents
+- **IDE Files**: IntelliJ IDEA specific files
+- **Test Reports**: Surefire reports and test outputs
+- **Allure Reports**: Allure test reporting files
+
+### 🔄 Repository Cleanup
+
+#### Recent Changes
+- **Target Folder**: Removed from git tracking while keeping local copies
+- **Build Artifacts**: 43 files removed from remote repository
+- **Clean History**: Repository size reduced by removing unnecessary build files
+
+#### Git Ignore Updates
+```gitignore
+# Build directory
+target/
+
+# IDE files
+.idea/
+*.iml
+
+# Test reports
+allure-results/
+```
+
+### 📊 Repository Statistics
+
+- **Files Removed**: 43 build-related files
+- **Space Saved**: Significant reduction in repository size
+- **Local Preserved**: All build artifacts remain available locally
+- **Remote Clean**: Repository contains only source code and configuration

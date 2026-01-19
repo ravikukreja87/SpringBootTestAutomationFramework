@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 
 /************************************************************************************************************************
- * @Date : Nov. 14, 2023
- * @Author : naveenchr
+ * @Author : Ravi Kukreja
  * @Description : User properties class
  * @Version : 1.0
  ************************************************************************************************************************/
