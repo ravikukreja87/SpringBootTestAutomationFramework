@@ -142,83 +142,71 @@ sequenceDiagram
 
 ```mermaid
 graph TB
-    A[SpringBootTestAutomationFramework] --> B[src]
+    A[Root] --> B[src]
     A --> C[target]
     A --> D[pom.xml]
-    A --> E[README.md]
     
-    B --> F[main]
-    B --> G[test]
+    B --> E[main]
+    B --> F[test]
     
-    F --> H[java]
-    F --> I[resources]
+    E --> G[java]
+    E --> H[resources]
     
-    H --> J[com.auto.framework]
-    J --> K[actions]
-    J --> L[config]
-    J --> M[constants]
-    J --> N[driverscope]
-    J --> O[interfaces]
-    J --> P[listeners]
+    G --> I[com.auto.framework]
+    I --> J[actions]
+    I --> K[config]
+    I --> L[constants]
+    I --> M[driverscope]
+    I --> N[interfaces]
+    I --> O[listeners]
     
-    K --> K1[BaseAction.java]
-    K --> K2[WebElementInteractor.java]
-    K --> K3[ElementValidator.java]
-    K --> K4[WaitManager.java]
-    K --> K5[JavaScriptHelper.java]
-    K --> K6[InteractionHelper.java]
+    J --> J1[BaseAction]
+    J --> J2[WebElementInteractor]
+    J --> J3[ElementValidator]
     
-    L --> L1[FrameworkProperties.java]
-    L --> L2[BrowserConfiguration.java]
+    K --> K1[FrameworkProperties]
+    K --> K2[BrowserConfiguration]
     
-    M --> M1[Constants.java]
+    L --> L1[Constants]
     
-    N --> N1[DriverScope.java]
-    N --> N2[DriverScopeConfig.java]
-    N --> N3[DriverScopePostProcessor.java]
+    M --> M1[DriverScope]
+    M --> M2[DriverScopeConfig]
     
-    O --> O1[WebElementInteraction.java]
-    O --> O2[IElementValidator.java]
-    O --> O3[WaitOperations.java]
-    O --> O4[JavaScriptOperations.java]
+    N --> N1[WebElementInteraction]
+    N --> N2[IElementValidator]
+    N --> N3[WaitOperations]
     
-    P --> P1[TestExecutionListener.java]
+    O --> O1[TestExecutionListener]
     
-    I --> I1[application.properties]
+    F --> P[java]
+    F --> Q[resources]
     
-    G --> G1[java]
-    G --> G2[resources]
+    P --> R[com.auto.framework]
+    R --> S[ElementValidationTests]
+    R --> T[pageobjects]
+    R --> U[testdata]
     
-    G1 --> G3[com.auto.framework]
-    G3 --> G4[ElementValidationTests.java]
-    G3 --> G5[pageobjects]
-    G3 --> G6[testdata]
+    T --> T1[common]
+    T --> T2[demoqa]
     
-    G5 --> G7[common]
-    G5 --> G8[demoqa]
+    T1 --> T3[BasePageObject]
     
-    G7 --> G9[BasePageObject.java]
+    T2 --> T4[ElementsPage]
+    T2 --> T5[TextBoxPF]
+    T2 --> T6[CheckBoxPF]
+    T2 --> T7[RadioButtonPF]
     
-    G8 --> G10[ElementsPage.java]
-    G8 --> G11[TextBoxPF.java]
-    G8 --> G12[CheckBoxPF.java]
-    G8 --> G13[RadioButtonPF.java]
-    G8 --> G14[WebTablePF.java]
+    U --> U1[UserDataProvider]
+    U --> U2[UserModal]
     
-    G6 --> G15[UserDataProvider.java]
-    G6 --> G16[UserModal.java]
-    
-    G2 --> G17[Element-Tests.xml]
+    H --> H1[application.properties]
+    Q --> Q1[Element-Tests.xml]
     
     style A fill:#e3f2fd
     style B fill:#f3e5f5
-    style G fill:#e8f5e8
-    style K fill:#fff3e0
-    style L fill:#fce4ec
-    style M fill:#f1f8e9
-    style N fill:#e0f2f1
-    style O fill:#fff8e1
-    style P fill:#f9fbe7
+    style F fill:#e8f5e8
+    style I fill:#fff3e0
+    style R fill:#fce4ec
 ```
 
 ### Package Responsibilities
@@ -289,18 +277,18 @@ graph LR
 ```mermaid
 graph TB
     subgraph "Spring Context"
-        A[@SpringBootTest]
-        B[@ComponentScan]
-        C[@Autowired]
+        A[SpringBootTest]
+        B[ComponentScan]
+        C[Autowired]
     end
     
     subgraph "Bean Definitions"
-        D[ElementsPage @Component]
-        E[TextBoxPF @Component]
-        F[CheckBoxPF @Component]
-        G[BasePageObject @Component]
-        H[FrameworkProperties @Component]
-        I[BrowserConfiguration @Configuration]
+        D[ElementsPage]
+        E[TextBoxPF]
+        F[CheckBoxPF]
+        G[BasePageObject]
+        H[FrameworkProperties]
+        I[BrowserConfiguration]
     end
     
     subgraph "Interface Implementations"
@@ -686,9 +674,6 @@ graph TB
     style C fill:#e8f5e8
     style D fill:#fff3e0
 ```
-    B --> C[Submit Form]
-    C --> D[Verify Output]
-  ```
 - **Test Data**:
   - First Name
   - Email
@@ -994,6 +979,37 @@ classDiagram
 ### 🔄 Data Generation with Faker
 
 ```java
+public UserModal generateUserData() {
+    Faker faker = new Faker();
+    return UserModal.builder()
+        .firstName(faker.name().firstName())
+        .email(faker.internet().emailAddress())
+        .currAddress(faker.address().fullAddress())
+        .permAddress(faker.address().fullAddress())
+        .age(faker.number().digit())
+        .salary(faker.number().digits(5))
+        .department(faker.company().name())
+        .build();
+}
+```
+
+### 🗃️ Test Data Strategies
+
+| Strategy | When to Use | Example |
+|----------|-------------|---------|
+| **Hardcoded** | Simple, stable data | `User user = new User("test", "pass")` |
+| **Generated** | Random test data | Faker library |
+| **External Files** | Large datasets | JSON, CSV, Excel |
+| **Database** | Complex data relationships | SQL queries |
+| **API** | Integration testing | REST clients |
+
+### 🔗 Related Resources
+
+- [TestNG Documentation](https://testng.org/doc/)
+- [Selenium WebDriver](https://www.selenium.dev/documentation/)
+- [WebDriverManager](https://github.com/bonigarcia/webdrivermanager)
+- [Maven Surefire Plugin](https://maven.apache.org/surefire/maven-surefire-plugin/)
+
 ## 🛠️ Troubleshooting
 
 ### Common Issues and Solutions
