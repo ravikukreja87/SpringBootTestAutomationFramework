@@ -4,16 +4,17 @@
 
 ## 📋 Table of Contents
 1. [Framework Overview](#-framework-overview)
-2. [Architecture](#-architecture)
-3. [Test Execution Flow](#-test-execution-flow)
-4. [Available Test Cases](#-available-test-cases)
-5. [Test Management](#-test-management)
-6. [Configuration](#-configuration)
-7. [Running Tests](#-running-tests)
-8. [Test Data Management](#-test-data-management)
-9. [Browser Features](#-browser-features)
-10. [Code Standards](#-code-standards)
-11. [Git Management](#-git-management)
+2. [Recent Updates](#-recent-updates-v12)
+3. [Architecture](#-architecture)
+4. [Test Execution Flow](#-test-execution-flow)
+5. [Available Test Cases](#-available-test-cases)
+6. [Test Management](#-test-management)
+7. [Configuration](#-configuration)
+8. [Running Tests](#-running-tests)
+9. [Test Data Management](#-test-data-management)
+10. [Browser Features](#-browser-features)
+11. [Code Standards](#-code-standards)
+12. [Git Management](#-git-management)
 
 ## 🏗️ Framework Overview
 
@@ -28,6 +29,47 @@ This is a robust Selenium WebDriver based test automation framework built with m
 | **Page Objects** | Page Factory | Web element management |
 | **Driver Management** | WebDriverManager | Automated browser driver setup |
 | **Build Tool** | Maven | Dependency and build management |
+
+## 🔄 Recent Updates (v1.2)
+
+### 📝 Class Refactoring
+
+The framework has undergone a comprehensive class refactoring to follow modern Java conventions:
+
+#### **Renamed Classes:**
+- `ActionsBaseClass` → `BaseAction`
+- `ElementVerification` → `ElementValidator`
+- `ExplicitWait` → `WaitManager`
+- `JavaScriptActions` → `JavaScriptHelper`
+- `UIElements` → `WebElementInteractor`
+- `UtilityClass` → `InteractionHelper`
+- `MyProperties` → `FrameworkProperties`
+- `WebDriverConfig` → `BrowserConfiguration`
+- `TestListener` → `TestExecutionListener`
+- `ElementTests` → `ElementValidationTests`
+- `BasePage` → `BasePageObject`
+
+#### **Interface Updates:**
+- `IUIElements` → `WebElementInteraction`
+- `IElementVerification` → `IElementValidator`
+- `IExplicitWait` → `WaitOperations`
+- `IJavaScriptActions` → `JavaScriptOperations`
+
+#### **Impact:**
+- ✅ Improved code readability and maintainability
+- ✅ Consistent naming patterns throughout framework
+- ✅ All Maven commands updated to use new class names
+- ✅ Comprehensive JavaDoc documentation added
+- ✅ Spring dependency injection properly configured
+
+#### **Updated Test Commands:**
+```bash
+# Updated test class name
+mvn test -Dtest=ElementValidationTests
+
+# Updated test method
+mvn test -Dtest=ElementValidationTests#whenPageLoads_thenDisplayCorrectTitle
+```
 
 ## 🏛️ Architecture
 
@@ -97,11 +139,11 @@ sequenceDiagram
 ### 🚀 Active Tests
 
 #### 1. `whenPageLoads_thenDisplayCorrectTitle()`
-- **Group**: `Sanity Test`
+- **Group**: `SanityTest`
 - **Description**: Validates that the Elements page loads correctly with the expected title
 - **Maven Command**:
   ```bash
-  mvn test -Dtest=ElementTests#whenPageLoads_thenDisplayCorrectTitle
+  mvn test -Dtest=ElementValidationTests#whenPageLoads_thenDisplayCorrectTitle
   ```
 - **Test Flow**:
   ```mermaid
@@ -113,16 +155,16 @@ sequenceDiagram
   - Page title should be "DEMOQA"
 
 #### 2. `whenSubmitTextBoxFormWithValidData_thenDisplayCorrectOutput(UserModal userData)`
-- **Depends On**: `Sanity Test` group
+- **Depends On**: `SanityTest` group
 - **Data Provider**: `User Data`
 - **Description**: Verifies form submission with dynamic user data
 - **Maven Command**:
   ```bash
   # Run with default data provider
-  mvn test -Dtest=ElementTests#whenSubmitTextBoxFormWithValidData_thenDisplayCorrectOutput
+  mvn test -Dtest=ElementValidationTests#whenSubmitTextBoxFormWithValidData_thenDisplayCorrectOutput
   
   # Run with specific test data index (e.g., first data set)
-  mvn test -Dtest=ElementTests#whenSubmitTextBoxFormWithValidData_thenDisplayCorrectOutput\[0\]
+  mvn test -Dtest=ElementValidationTests#whenSubmitTextBoxFormWithValidData_thenDisplayCorrectOutput\[0\]
   ```
 - **Test Flow**:
   ```mermaid
@@ -140,11 +182,11 @@ sequenceDiagram
   - All submitted data matches output
 
 #### 3. `whenSelectRadioButton_thenDisplaySelectedValue()`
-- **Depends On**: `Sanity Test` group
+- **Depends On**: `SanityTest` group
 - **Description**: Tests radio button selection and verification
 - **Maven Command**:
   ```bash
-  mvn test -Dtest=ElementTests#whenSelectRadioButton_thenDisplaySelectedValue
+  mvn test -Dtest=ElementValidationTests#whenSelectRadioButton_thenDisplaySelectedValue
   ```
 - **Test Flow**:
   ```mermaid
@@ -156,12 +198,12 @@ sequenceDiagram
   - Confirmation message matches selected value
 
 #### 3. `whenSelectCheckBoxOption_thenDisplayConfirmation()`
-- **Depends On**: `Sanity Test` group
+- **Depends On**: `SanityTest` group
 - **Status**: ✅ **Active** (Previously disabled, now enabled)
 - **Description**: Validates check box selection in a tree structure
 - **Maven Command**:
   ```bash
-  mvn test -Dtest=ElementTests#whenSelectCheckBoxOption_thenDisplayConfirmation
+  mvn test -Dtest=ElementValidationTests#whenSelectCheckBoxOption_thenDisplayConfirmation
   ```
 - **Test Flow**:
   ```mermaid
@@ -272,7 +314,7 @@ wdm.proxyBypass=*.local,localhost
 <suite name="Element Tests" parallel="methods" thread-count="5">
     <test name="UI Element Tests">
         <classes>
-            <class name="com.auto.framework.ElementTests" />
+            <class name="com.auto.framework.ElementValidationTests" />
         </classes>
     </test>
 </suite>
@@ -297,23 +339,26 @@ pie
 # Run all tests with Maven
 mvn clean test
 
-# Run specific test class
-mvn test -Dtest=ElementTests
+# Run specific test class (updated class name)
+mvn test -Dtest=ElementValidationTests
 
 # Run specific test method
-mvn test -Dtest=ElementTests#whenPageLoads_thenDisplayCorrectTitle
+mvn test -Dtest=ElementValidationTests#whenPageLoads_thenDisplayCorrectTitle
 
 # Run with different browser
 mvn test -Dmy.properties.browser=chrome
 
 # Run with specific test group
-mvn test -Dgroups="sanity"
+mvn test -Dgroups="SanityTest"
 
 # Run with Maven in parallel
 mvn test -DthreadCount=5
 
 # Run with detailed logs
 mvn test -Dmaven.surefire.debug -Dmaven.failsafe.debug
+
+# Run using TestNG XML configuration
+mvn test -DsuiteXmlFile=src/test/resources/Element-Tests.xml
 ```
 
 ### 💻 From IDE (IntelliJ/Eclipse)
@@ -325,7 +370,7 @@ mvn test -Dmaven.surefire.debug -Dmaven.failsafe.debug
    - Or use shortcut: `Ctrl+Shift+F10` (Windows/Linux)
 
 2. **Run Test Class**
-   - Open `ElementTests.java`
+   - Open `ElementValidationTests.java`
    - Click green arrow next to class name
    - Or use shortcut: `Ctrl+Shift+F10`
 

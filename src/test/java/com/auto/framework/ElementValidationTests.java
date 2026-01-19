@@ -65,7 +65,7 @@ public class ElementValidationTests extends AbstractTestNGSpringContextTests {
 	 * 
 	 * @throws AssertionError if the page title does not match the expected value
 	 */
-	@Test(groups = "Sanity Test")
+	@Test(groups = "SanityTest")
 	public void whenPageLoads_thenDisplayCorrectTitle() {
 		elementsPage.openElementsPage();
 		assertThat(elementsPage.getPageTitle(), is("DEMOQA"));
@@ -78,7 +78,7 @@ public class ElementValidationTests extends AbstractTestNGSpringContextTests {
      * @param userData Test data containing user information from the data provider
      * @throws AssertionError if any submitted data does not match the output
      */
-	@Test(dependsOnGroups = "Sanity Test", dataProvider = "User Data", dataProviderClass = UserDataProvider.class)
+	@Test(dependsOnGroups = "SanityTest", dataProvider = "User Data", dataProviderClass = UserDataProvider.class)
 	public void whenSubmitTextBoxFormWithValidData_thenDisplayCorrectOutput(UserModal userData) {
 		elementsPage.textBoxPF.openTextBoxPage();
 
@@ -101,7 +101,7 @@ public class ElementValidationTests extends AbstractTestNGSpringContextTests {
      * 
      * @throws AssertionError if the confirmation message does not contain the expected text
      */
-	@Test(dependsOnGroups = "Sanity Test")
+	@Test(dependsOnGroups = "SanityTest")
 	public void whenSelectCheckBoxOption_thenDisplayConfirmation() {
 		elementsPage.checkBoxPF.openCheckBoxPage();
 
@@ -120,7 +120,7 @@ public class ElementValidationTests extends AbstractTestNGSpringContextTests {
      * 
      * @throws AssertionError if the confirmation message does not match the selected value
      */
-	@Test(dependsOnGroups = "Sanity Test")
+	@Test(dependsOnGroups = "SanityTest")
 	public void whenSelectRadioButton_thenDisplaySelectedValue() {
 		elementsPage.radioButtonPF.openRadioButtonPage();
 		elementsPage.radioButtonPF.clickRadioButton("Impressive");
