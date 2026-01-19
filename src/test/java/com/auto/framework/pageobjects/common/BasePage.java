@@ -21,34 +21,82 @@ import lombok.extern.slf4j.Slf4j;
 
 /************************************************************************************************************************
  * @Author : Ravi Kukreja
- * @Description : Base page for all POM page classes
- * @Version : 1.0
+ * @Description : Base page for all POM page classes providing common functionality and dependency injection.
+ *                  This class extends ActionsBaseClass and serves as the foundation for all page object
+ *                  classes, providing access to UI elements, verification, wait operations, and JavaScript
+ *                  actions. Includes screenshot capture functionality for test reporting and debugging.
+ * @Version : 1.1
  ************************************************************************************************************************/
+
+/**
+ * Base page class for all Page Object Model (POM) page classes.
+ * This class provides common functionality and dependency injection for all page objects,
+ * serving as the foundation for consistent page object implementation across the framework.
+ * 
+ * <p>This class extends ActionsBaseClass and provides access to all UI interaction interfaces,
+ * verification methods, wait operations, and JavaScript actions. It also includes screenshot
+ * capture functionality for test reporting and debugging purposes.</p>
+ * 
+ * @author Ravi Kukreja
+ * @version 1.1
+ * @since 1.0
+ * @see com.auto.framework.actions.ActionsBaseClass
+ * @see com.auto.framework.interfaces.IUIElements
+ * @see com.auto.framework.interfaces.IElementVerification
+ * @see com.auto.framework.interfaces.IExplicitWait
+ * @see com.auto.framework.interfaces.IJavaScriptActions
+ */
 @Slf4j
 @Component
 public class BasePage extends ActionsBaseClass {
 
-	@Autowired
-	public IUIElements iUIElements;
+    /**
+     * Autowired interface for UI element interactions.
+     * Provides methods for clicking, typing, navigation, and advanced element operations.
+     */
+    @Autowired
+    public IUIElements iUIElements;
 
-	@Autowired
-	public IElementVerification iElementVerification;
+    /**
+     * Autowired interface for element verification operations.
+     * Provides methods for retrieving page titles and element text content.
+     */
+    @Autowired
+    public IElementVerification iElementVerification;
 
-	@Autowired
-	public IExplicitWait iExplicitWait;
+    /**
+     * Autowired interface for explicit wait operations.
+     * Provides methods for waiting for elements to reach specific states.
+     */
+    @Autowired
+    public IExplicitWait iExplicitWait;
 
-	@Autowired
+    /**
+     * Autowired interface for JavaScript-based actions.
+     * Provides alternative interaction methods when standard Selenium actions are insufficient.
+     */
+    @Autowired
 	public IJavaScriptActions iJavaScriptActions;
 
-	public void teardownDriver() {
-		log.info("Taking Screenshots");
-		attachScreenShot();
-		log.info("Closing Browsers");
-		if (nonNull(driver)) {
-			driver.close();
-		}
-	}
+    /**
+     * Tears down the WebDriver instance after test execution.
+     * Captures a screenshot for test reporting and closes the browser.
+     */
+    public void teardownDriver() {
+        log.info("Taking Screenshots");
+        attachScreenShot();
+        log.info("Closing Browsers");
+        if (nonNull(driver)) {
+            driver.close();
+        }
+    }
 
+	/**
+	 * Captures a screenshot of the current browser state and attaches it to test reports.
+	 * This method is annotated with @Attachment to automatically include screenshots in test reports.
+	 * 
+	 * @return Byte array representing the screenshot image, or empty array if capture fails
+	 */
 	@Attachment(value = "Screen shot", type = "image/png", fileExtension = ".png")
 	public byte[] attachScreenShot() {
 		try {
