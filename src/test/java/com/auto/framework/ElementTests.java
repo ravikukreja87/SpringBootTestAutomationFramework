@@ -19,22 +19,49 @@ import com.auto.framework.testdata.UserModal;
 
 /************************************************************************************************************************
  * @Author : Ravi Kukreja
- * @Description : Element validation tests
- * @Version : 1.0
+ * @Description : Element validation tests for the demoqa.com Elements page. This test class validates
+ *                  various UI interactions including page navigation, form submissions, radio button
+ *                  selection, and checkbox interactions. Tests are organized with proper dependencies
+ *                  and data providers for comprehensive validation of web element functionality.
+ * @Version : 1.1
  ************************************************************************************************************************/
+
+/**
+ * Test class for validating Elements page functionality on demoqa.com.
+ * This class contains comprehensive tests for various UI interactions including
+ * page navigation, form submissions, radio button selection, and checkbox interactions.
+ * 
+ * <p>Tests are organized with proper dependencies and data providers to ensure
+ * reliable execution and comprehensive validation of web element functionality.</p>
+ * 
+ * @author Ravi Kukreja
+ * @version 1.1
+ * @since 1.0
+ * @see org.springframework.boot.test.context.SpringBootTest
+ * @see org.testng.annotations.Test
+ * @see com.auto.framework.pageobjects.demoqa.ElementsPage
+ */
 @SpringBootTest
 @Listeners(TestListener.class)
 public class ElementTests extends AbstractTestNGSpringContextTests {
 
-	@Autowired
-	private BasePage basePage;
+    /**
+     * Autowired BasePage instance providing common page functionality.
+     */
+    @Autowired
+    private BasePage basePage;
 
-	@Autowired
-	public ElementsPage elementsPage;
+    /**
+     * Autowired ElementsPage instance for Elements page specific interactions.
+     */
+    @Autowired
+    public ElementsPage elementsPage;
 
 	/**
 	 * Verifies that the Elements page loads correctly and displays the expected title.
 	 * This is a basic sanity check that should always pass if the application is running.
+	 * 
+	 * @throws AssertionError if the page title does not match the expected value
 	 */
 	@Test(groups = "Sanity Test")
 	public void whenPageLoads_thenDisplayCorrectTitle() {
@@ -45,8 +72,9 @@ public class ElementTests extends AbstractTestNGSpringContextTests {
 	/**
 	 * Tests the Text Box form submission with valid user data.
 	 * Verifies that all submitted data is correctly displayed in the output section.
-     *
-     * @param userData Test data containing user information
+     * 
+     * @param userData Test data containing user information from the data provider
+     * @throws AssertionError if any submitted data does not match the output
      */
 	@Test(dependsOnGroups = "Sanity Test", dataProvider = "User Data", dataProviderClass = UserDataProvider.class)
 	public void whenSubmitTextBoxFormWithValidData_thenDisplayCorrectOutput(UserModal userData) {
@@ -69,7 +97,7 @@ public class ElementTests extends AbstractTestNGSpringContextTests {
 	 * Tests the Check Box functionality by expanding the tree and selecting an option.
 	 * Verifies that the selected option is correctly reflected in the confirmation message.
      * 
-     * Note: This test is currently disabled. To enable, uncomment the @Test annotation.
+     * @throws AssertionError if the confirmation message does not contain the expected text
      */
 	@Test(dependsOnGroups = "Sanity Test")
 	public void whenSelectCheckBoxOption_thenDisplayConfirmation() {
@@ -87,6 +115,8 @@ public class ElementTests extends AbstractTestNGSpringContextTests {
 	/**
 	 * Tests the Radio Button functionality by selecting an option.
      * Verifies that the selected radio button's value is correctly displayed.
+     * 
+     * @throws AssertionError if the confirmation message does not match the selected value
      */
 	@Test(dependsOnGroups = "Sanity Test")
 	public void whenSelectRadioButton_thenDisplaySelectedValue() {
@@ -96,12 +126,22 @@ public class ElementTests extends AbstractTestNGSpringContextTests {
 
 	}
 
+	/**
+	 * Prepares the Spring test context before each test method execution.
+	 * This method ensures proper Spring context initialization for test dependency injection.
+	 * 
+	 * @throws Exception if context preparation fails
+	 */
 	@BeforeMethod
 	@Override
 	public void springTestContextPrepareTestInstance() throws Exception {
 		super.springTestContextPrepareTestInstance();
 	}
 
+	/**
+	 * Cleans up test resources after each test method execution.
+	 * This method ensures proper cleanup of WebDriver instances and other resources.
+	 */
 	@AfterMethod(alwaysRun = true)
 	public void teardownDriver() {
 		basePage.teardownDriver();
